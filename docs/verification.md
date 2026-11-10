@@ -40,9 +40,16 @@ reported after creation, not embedded in this same record.
 
 ## Limits And Publication
 
-At local acceptance, hosted CI had not yet run. The workflow defines Linux and
-Windows jobs on Python 3.10 and 3.13; consult GitHub Actions for actual hosted
-results. No live Codex session discovery or target application end-to-end trial
+At initial local acceptance, hosted CI had not yet run. On 2026-11-10, the
+[first hosted run](https://github.com/Logic70/engineering-skills/actions/runs/42768424919)
+passed all four Linux/Windows and Python 3.10/3.13 combinations. That run exposed
+deprecated Node runtime warnings from the original action versions. Before
+tagging, the workflow was updated to the verified official v7 action lines for
+[checkout](https://github.com/actions/checkout) and
+[setup-python](https://github.com/actions/setup-python); this follow-up requires
+another hosted run. Consult GitHub Actions for its actual result.
+
+No live Codex session discovery or target application end-to-end trial
 is claimed. Other-agent automatic discovery and behavioral compliance are also
 unverified. The example change record is illustrative, not application evidence.
 
