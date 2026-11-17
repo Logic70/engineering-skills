@@ -1,11 +1,13 @@
 # Engineering Skills
 
-A small, portable skill bundle for taking an engineering change from design to
-implementation, verification, documentation, and a traceable Git commit.
+A small, portable skill bundle for taking a usable functional change through
+design, branch implementation, PR review, authorized integration, and independent
+acceptance, with traceable documentation and Git records.
 
 Start with `engineering-workflow`. It coordinates the other skills; it does not
 install an agent runtime, prescribe a framework, or replace your project's tools.
 Small fixes stay small. Cross-module changes get explicit design contracts.
+Merge, independent acceptance, and release are separate outcomes.
 
 [中文说明](README.zh-CN.md) | [Design](docs/design.md) | [Example](examples/change-record.md) | [Acceptance](docs/verification.md)
 
@@ -13,14 +15,14 @@ Small fixes stay small. Cross-module changes get explicit design contracts.
 
 | Skill | Responsibility |
 | --- | --- |
-| `engineering-workflow` | Scope the change and coordinate the lifecycle |
+| `engineering-workflow` | Select functional slices and coordinate roles, dependencies, and handoffs |
 | `highlevel-design` | Define architecture, boundaries, and verification contracts |
 | `lowlevel-design` | Specify implementation interfaces and HLD traceability |
 | `design-plan-closure-review` | Review and repair designs and plans until closure |
-| `engineering-implement` | Implement the agreed change using existing patterns |
-| `engineering-test` | Select and run risk-proportionate verification |
-| `engineering-review` | Review the final patch for bugs, regressions, and missing tests |
-| `engineering-deliver` | Update documentation, capture evidence, and commit scoped changes |
+| `engineering-implement` | Implement on a development branch, own unit tests/self-checks, and fix bugs |
+| `engineering-test` | Prepare requirement/design-based cases early; independently accept actual main |
+| `engineering-review` | Review the PR patch for bugs, regressions, and missing tests |
+| `engineering-deliver` | Record evidence, commit scoped changes, and report delivery/acceptance state |
 
 ## Install For Codex
 
@@ -66,29 +68,78 @@ Invoke an individual skill for a narrower task, for example
 terminal commands. A request for design or review only does not authorize code
 changes, commits, or publication.
 
-The normal sequence is:
+Choose a small usable business flow, its real saved result or stage handoff, and
+observable success evidence. Reuse completed foundations and update only affected
+HLD/LLD. Functional progress comes first; defer nonblocking performance tuning,
+extreme-case hardening, and compatibility work in the existing backlog without
+removing agreed final requirements or acceptance scope. Necessary correctness,
+authorization, truthful evidence, data integrity, cancellation, and cleanup remain
+required.
+
+Responsibilities are separate, not three copies of the same work:
+
+| Role | Owns |
+| --- | --- |
+| Design | Affected HLD/LLD, interfaces, data handoffs, and design omissions/conflicts |
+| Development | Branch implementation, unit tests, applicable self-checks, PRs, and product fixes |
+| Testing | Early cases/data/automation from requirements and design; independent main acceptance and retest |
+| Coordinator | Priority, dependencies, file ownership, permissions, evidence coverage, and reporting |
+
+The acceptance owner must not author that feature's product code. Preparing its
+acceptance cases or runners does not disqualify the testing owner. Assign roles
+per feature; keep parallel work prerequisite-ready with explicit file ownership,
+not a permanent agent for every role.
+
+The normal delivery flow is:
 
 ```text
-Scope -> HLD when warranted -> LLD when warranted -> design/plan closure
-      -> implementation -> tests -> patch review -> docs/evidence -> Git commit
+Functional scope -> affected design/plan closure
+                 -> development branch + unit tests/self-checks -> commit/PR
+                 -> code review + merge checks + authorization -> main merge
+                 -> independent acceptance of identified actual main commit
+Testing prepares requirement/design-based cases while development proceeds.
 ```
 
-Each stage consumes the preceding stage's actual outputs. Reuse existing project
-documents and test commands. For small changes, a concise change record can cover
-scope, plan, evidence, and delivery; do not invent a full document hierarchy.
-Evidence can use an existing issue/PR or repository document. Persist a repository
-record when there is no existing durable place. The example is a template, not
-test evidence from an actual application run.
+Create the PR after development self-checks, then review it before merge; a
+completed PR review is not a prerequisite to creating the PR. Use the project's
+authoritative integration branch, called main here. Testing runs a fixed actual
+main SHA in a clean isolated checkout or exact source export, not a feature
+branch, merge preview, or unmerged product overlay. Record that SHA and the
+case/runner versions. Unit/mock results do not replace required real business-flow
+and stage-handoff acceptance.
+
+Clear implementation failures return directly to development with reproduction
+and evidence. Design resolves requirement/contract ambiguity; new business choices
+return to the user. Fixes follow branch -> self-checks -> PR/review -> authorized
+main merge -> affected main retest. Clarification must not turn a demonstrated
+failure into a pass. Pending post-merge acceptance cannot excuse a failing merge
+check, and a merge alone does not mean acceptance or release.
+
+Reuse existing project documents, issues/PRs, and test commands. A concise record
+can cover a small change; do not invent a document hierarchy or tracking system.
+Persist a repository record only when no existing durable place is available.
+The [example](examples/change-record.md) separates development evidence, delivery,
+and main acceptance; it is not evidence from an actual application run.
 
 ## Safety And Limits
 
 - Repository instructions, user intent, and tool permissions take precedence.
+  Preserve explicit pauses; a policy/documentation task does not resume paused
+  product work or jobs. This bundle grants no merge, deployment, installation,
+  service/account, production, or model/data-egress permission.
 - Ordinary implementation requests include scoped local commits under this
   workflow, unless the user or repository prohibits them. Never push, publish,
   delegate, change architecture, or perform destructive Git operations implicitly.
-- Do not claim verification or review rounds that were not performed. Skipped or
-  unavailable checks must remain visible. Materially missing validation blocks a
-  completion claim; passing a syntax check is not behavioral acceptance.
+- Do not claim verification or review rounds that were not performed. Report
+  passed, failed, and unverified scope separately. Reuse supporting checks only
+  when relevant source, locks, toolchain, and configuration are unchanged and
+  identifiable; never relabel branch results as main acceptance. Missing checks
+  remain missing, and a syntax check is not behavioral acceptance.
+- Pure prose or collaboration-policy maintenance may mark product acceptance not
+  applicable with static diff/link/consistency checks. Runtime prompts, product
+  skills, catalog inputs, and fixtures are not exempt just because they use
+  Markdown. Broaden regression for shared behavior or final integration, not
+  every documentation edit.
 - Never stage unrelated work, credentials, machine-specific configuration, or raw
   execution logs. Existing changes must be preserved.
 - No provider credentials, scheduler, external coding agent, or workflow engine is

@@ -1,6 +1,6 @@
 ---
 name: engineering-deliver
-description: Finish an implemented and reviewed engineering change by updating documentation, persisting verification evidence, and creating a scoped local Git commit. Use for delivery, not implicit push or publication.
+description: Record and commit a coherent self-checked change, support authorized PR review and main merge, and hand off independent acceptance with truthful status. Use for scoped delivery, not implicit push, merge or release permission.
 ---
 
 # Engineering Deliver
@@ -8,7 +8,9 @@ description: Finish an implemented and reviewed engineering change by updating d
 ## Reconcile The Result
 
 Read the user request, repository instructions, accepted design, final patch,
-test evidence, and review findings. Resolve blockers before claiming completion.
+development evidence, and available review findings. Resolve blockers before
+claiming completion. A commit or open PR can precede review; authorized main merge
+requires completed review and applicable passing merge checks.
 Document a user-accepted limitation accurately; never relabel a failed/skipped
 check as passed. Design-only and review-only requests do not authorize a commit.
 
@@ -44,10 +46,33 @@ existing external record; do not create recursive commits just to embed a commit
 own hash in its contents. If commit creation fails, preserve work and report the
 delivery gap. Do not call delivery complete without the requested commit.
 
+## Authorized PR And Main Handoff
+
+Push, merge and release require applicable user authorization and host controls;
+this skill does not grant them. For authorized integration, push the development
+branch and open a coherent PR with business scope, affected design, acceptance
+cases, actual self-checks, limitations and post-merge handoff. Do not push product
+changes directly to main. An open PR is not merged; missing CI is not passing CI.
+
+After `$engineering-review` and required checks pass, merge only the reviewed
+candidate through the normal authorized PR process. Verify the actual merge and
+main SHA. Update only a clean available local main by fast-forward; preserve active
+worktrees and consumers. Remote backup is not approval, acceptance or release.
+
+Transfer main SHA, case/runner versions and known gaps to the independent owner
+using `$engineering-test`. Pending main acceptance does not prevent describing a
+successful merge, but must not be described as passed. Acceptance bugs go back to
+development for branch/self-check/review/PR/main/retest, never patches on main.
+For genuinely non-product prose/policy changes, record why product acceptance is
+not applicable and the static checks used; runtime prompts/skills are not exempt
+by extension alone. Follow existing evidence housekeeping without inventing a
+new product stage; retain source/failures when archiving fails, never fake a pass.
+
 ## Final Report
 
-Summarize changed behavior, documentation/record locations, actual checks and
-review outcome, residual limitations, and commit ID. Push or public publication
+Summarize the usable outcome, documentation/record locations, actual self-checks
+and review, commit/PR/merge state, independent main acceptance and limitations.
+Keep merge, acceptance and release separate. Push or public publication
 is a separate step requiring explicit user authorization and normal host approval.
 When authorized, verify the remote branch/commit and visibility before claiming
 publication succeeded. Local success is not evidence of remote publication.

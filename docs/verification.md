@@ -56,3 +56,43 @@ unverified. The example change record is illustrative, not application evidence.
 Public GitHub creation and push are explicitly authorized by the user. Remote
 visibility and commit identity must be checked after push. A local commit or this
 document alone is not evidence of successful remote publication.
+
+## 2026-11-17 Workflow Revision
+
+Scope: reconcile the existing eight skills with feature-first design, development
+and independent testing responsibilities. No ninth skill, installer change,
+dependency, runtime, service or target-application change is included. Existing
+main baseline: `55c71a07e591d349089e1e1ade71f9759cf7008a`.
+
+The revised handoff is affected HLD/LLD plus early independent test preparation,
+development-branch implementation/unit/self-checks, commit and authorized PR,
+review and authorized main merge, then independent actual-main acceptance.
+Acceptance defects return through a fix branch, self-checks, review, PR/main and
+main retest. Merge, acceptance and release are separate outcomes. Functional
+delivery takes priority over nonblocking DFX without discarding final scope or
+mandatory correctness, authorization, data integrity and truthful evidence.
+
+| Review | Observed Finding And Resolution |
+| --- | --- |
+| 1: scope and handoffs | Accepted: the old coordinator treated testing as a late branch-verification stage, HLD/LLD did not hand criteria to early independent test planning, and closure did not distinguish optional design-review assistance from acceptance independence. Updated those handoffs and related implementation/review/delivery contracts. |
+| 2: eight-skill scenarios | An independent read-only reviewer found no new actionable behavioral issue across small/large changes, PR review fixes, authorization gates, main identity, defect retest, missing evidence and paused/design-only scopes. This was instruction review, not a target-application run. |
+| 3: fresh full review | Independent read-only review of all eight skills, bilingual entries, design/plan, example and this record found no new actionable issue. Early planning, role independence, PR/main gates, defect feedback, evidence reuse and historical claims are consistent; no accepted finding remains open. |
+
+Observed development verification on Windows, Python 3.13.5:
+
+- `python -B scripts/validate.py`: passed, eight skills and local package links.
+- `python -B -m unittest discover -s tests -v`: all 22 tests passed, including
+  no-overwrite installation and validation behavior. Installer, validator and
+  test code are unchanged; these checks do not prove instruction compliance.
+- After the affected documentation updates, `python -B scripts/validate.py` and
+  `git diff --check` passed again. No installer, validator or test-code change.
+- A limited pattern scan found no machine-specific account paths, private-key
+  headers, common GitHub token prefix or target-project name in the revised
+  package documentation/skills; this is not a comprehensive security audit.
+
+Hosted checks, actual merge and independent main verification are pending at
+this branch record; their observed state belongs in the PR record, not an
+invented pass here. This revision does not
+claim a real target-project trial, live agent discovery, or new cross-platform
+execution from these local checks. No blanket product-acceptance exemption is
+claimed merely because the deliverable uses Markdown.
