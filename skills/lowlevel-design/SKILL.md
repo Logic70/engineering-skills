@@ -41,6 +41,10 @@ separate implementation/migration plan, not in the steady-state design.
 ## Output And Handoff
 
 Deliver implementation contracts, HLD traceability, open decisions, and the
-separate plan. Run `$design-plan-closure-review`. Hand settled artifacts and
-acceptance criteria to `$engineering-implement`; unresolved blocking decisions
-stop implementation. A request only for the LLD stops after the design output.
+separate plan. Run `$design-plan-closure-review`. Design owns requirement/contract
+alignment. Hand settled artifacts, requirement mapping and acceptance criteria to
+`$engineering-implement` and, in parallel, `$engineering-test` for independent case
+preparation. Unit tests remain development's responsibility. Testing accepts only
+identified actual main code after authorized merge, not this design or the feature
+branch as product completion. Unresolved blocking decisions stop dependent work,
+not unrelated ready work. A request only for the LLD stops at the design output.

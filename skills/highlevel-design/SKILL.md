@@ -15,6 +15,9 @@ proposals, and unresolved user decisions. Assess whether an HLD is proportionate
 
 Record the goal, baseline, constraints, in-scope and out-of-scope behavior, and
 authoritative artifacts. Describe steady-state architecture, not task sequencing.
+Design owns alignment with requirements. Update only the affected design and
+reuse settled decisions; do not front-load nonblocking DFX or redesign the whole
+system for each functional slice.
 
 Cover these views:
 
@@ -44,5 +47,9 @@ decisions, and a separate implementation/migration plan when requested. Use
 approval merely because the author self-reviewed the design. Ask the user to
 resolve decisions that change product scope or architecture beyond authorization.
 
-Pass the settled HLD and remaining constraints to `$lowlevel-design`. For a
-design-only request, stop here; do not edit production code or commit implicitly.
+Pass the settled HLD and remaining constraints to `$lowlevel-design`. Share the
+user outcomes, requirement mapping, boundaries and acceptance criteria early with
+independent testing through `$engineering-test`; testing prepares cases while
+development proceeds, but accepts only actual main after authorized merge. For a
+design-only request, stop at design outputs; do not start implementation, execute
+acceptance or commit implicitly.

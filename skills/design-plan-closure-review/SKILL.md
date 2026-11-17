@@ -14,6 +14,10 @@ large documents for small changes.
 Perform at least three actual review rounds by default. Inspect goal fidelity,
 lifecycle and handoffs, information flow, compatibility, boundary ownership,
 failure behavior, testability, operations, and implementation ordering.
+For a full engineering lifecycle, check early requirement-based test preparation,
+development branch unit/self-checks, PR review and authorized merge, then independent
+acceptance of an identified actual main commit. Check that bugs return through a
+fix branch, self-check, review, PR/main merge and main retest, not patches on main.
 
 For each finding record the issue, impact, decision, and repair/evidence:
 
@@ -24,8 +28,10 @@ For each finding record the issue, impact, decision, and repair/evidence:
 
 Repair accepted findings between rounds. Keep reviewing beyond three rounds if
 new actionable issues appear. A deferred issue cannot hide a blocking design
-contradiction. Independent agents are optional and require authorization; serial
-self-review is valid and must not be described as independent review.
+contradiction. Independent design-review agents are optional and require
+authorization; serial self-review is valid and must not be described as independent
+review. This does not waive the full workflow's independent acceptance owner,
+who must not have authored that feature's product code.
 
 ## Exit
 
